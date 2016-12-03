@@ -25,22 +25,19 @@ function saveChanges() {
         var url = tabs[0].url;
     });
 
-    chrome.storage.sync.get("urls")
+    chrome.storage.sync.get(['urls'], function(items) {
+        var urls = items[0]
+        urls.append(url);
+    });
     // Save it using the Chrome extension storage API.
-    chrome.storage.sync.set({'value': theValue}, function() {
+    chrome.storage.sync.set({'urls': urls], function() {
       // Notify that we saved.
       message('Settings saved');
     });
+    }
 }
 
-chrome.storage.onChanged.addListener(function(changes, namespace) {
-    for (key in changes) {
-      var storageChange = changes[key];
-      console.log('Storage key "%s" in namespace "%s" changed. ' +
-                  'Old value was "%s", new value is "%s".',
-                  key,
-                  namespace,
-                  storageChange.oldValue,
-                  storageChange.newValue);
-    }
-});
+// chrome.storage.onChanged.addListener(function(changes, namespace) {
+//     if (changes[urls])
+//         console.log(urls.length())
+// });
