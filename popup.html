@@ -27,10 +27,19 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <script src="popup.js"></script>
+    <script src="js/popup.js"></script>
   </head>
   <body>
     <div id="status"></div>
-    <img id="image-result" hidden>
+	<form>
+		<div class="form-group">
+			<label for="start-page">Start Page</label>
+			<input type="text" class=form-control" id="start-page" placeholder="Start Page">
+		</div>
+		<div class="form-group">
+			<label for="end-page">End Page</label>
+			<input type="text" class=form-control" id="end-page" placeholder="End Page">
+		</div>
+		<button id="startGame" class="btn btn-success">Start Game</button>
   </body>
 </html>
